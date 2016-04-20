@@ -1,5 +1,6 @@
 package edmund.defensekilldemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,8 +12,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //test
+
+        if (!DeviceUtil.isNotificationAccessEnabled(getApplicationContext())) {
+            Intent nitificationIntent = new Intent(MainActivity.this, NotificationAlertActivity.class);
+            MainActivity.this.startActivity(nitificationIntent);
+        }
+
+        Intent service = new Intent(MainActivity.this,MDMService.class);
+        startService(service);
+        Intent service1 = new Intent(MainActivity.this,NotificationMonitor.class);
+        startService(service1);
+        //tests
         //test2
+        //test3
+        //test4
+        //test5
+        //test6
     }
 
     @Override
